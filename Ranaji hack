@@ -1,0 +1,18 @@
+import random
+
+def generate_wingo_numbers(num_numbers, num_range):
+    return sorted(random.sample(range(1, num_range + 1), num_numbers))
+
+# Example for a Wingo game where you pick 6 numbers out of 36
+wingo_numbers = generate_wingo_numbers(6, 36)
+print(f"Your Wingo numbers are: {wingo_numbers}")
+import pandas as pd
+
+# Load historical Wingo data
+data = pd.read_csv('wingo_past_results.csv')
+
+# Count frequency of each number
+number_frequency = data.apply(pd.Series.value_counts).sum(axis=1).sort_values(ascending=False)
+
+print("Number frequencies in past draws:")
+print(number_frequency)
